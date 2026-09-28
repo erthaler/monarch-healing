@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Monarch Healing</title>
+<meta name="description" content="Jin Shin Do®, Quantum Life Guidance and bodywork with Monika Kulaga in North Vancouver and online. Attuned intuitive sessions reconnecting you to yourSelf and optimal health.">
+<link rel="canonical" href="https://monarch-healing.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Monarch Healing · Monika Kulaga">
+<meta property="og:description" content="What if it could only get better? Intuitive guidance and bodywork in North Vancouver and online.">
+<meta property="og:image" content="https://monarch-healing.com/img/portrait.jpg">
+<meta property="og:url" content="https://monarch-healing.com/">
+<meta name="theme-color" content="#FAF4F6">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#FAF4F6; --ground-2:#F3E8EE; --surface:#FFFFFF;
+  --ink:#2B1A2C; --ink-2:#5E4A5E; --ink-3:#8C7A8B; --line:#E6D6DF;
+  --monarch:#D9661A; --monarch-soft:#FBE3D0; --rose:#C9486E; --rose-soft:#F8DDE6;
+  --sage:#4F7A62; --sage-soft:#DDEBE2; --amber:#A96A00; --amber-soft:#F6E7C8;
+  --vein:#241322; --on-accent:#FFFFFF;
+  --display:"Gloock","Iowan Old Style","Georgia",serif;
+  --body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"Spline Sans Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:14px; --fog-o:.75; --wash:var(--ground); --shadow:0 18px 50px -24px rgba(60,20,50,.35);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --ground:#170F17; --ground-2:#211621; --surface:#261A26;
+  --ink:#F6EAF1; --ink-2:#CDB9C8; --ink-3:#9C889A; --line:#3A2B39;
+  --monarch:#F2913F; --monarch-soft:#3A2416; --rose:#EE89A8; --rose-soft:#3B1F2A;
+  --sage:#8CC3A2; --sage-soft:#1D3127; --amber:#E7B45A; --amber-soft:#3A2D14;
+  --vein:#120A11; --on-accent:#1A0E14; --shadow:0 18px 50px -24px rgba(0,0,0,.7); --fog-o:.28;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#170F17; --ground-2:#211621; --surface:#261A26;
+  --ink:#F6EAF1; --ink-2:#CDB9C8; --ink-3:#9C889A; --line:#3A2B39;
+  --monarch:#F2913F; --monarch-soft:#3A2416; --rose:#EE89A8; --rose-soft:#3B1F2A;
+  --sage:#8CC3A2; --sage-soft:#1D3127; --amber:#E7B45A; --amber-soft:#3A2D14;
+  --vein:#120A11; --on-accent:#1A0E14; --shadow:0 18px 50px -24px rgba(0,0,0,.7); --fog-o:.28;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
+h2{font-size:clamp(2rem,4.4vw,3.1rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--monarch)}
+.lede{color:var(--ink-2);font-size:1.08rem;max-width:62ch}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:.55em;border:0;cursor:pointer;border-radius:999px;padding:.8em 1.4em;font-weight:600;text-decoration:none;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .25s}
+.btn-primary{background:var(--ink);color:var(--ground)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px var(--rose)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--ink-3)}
+.btn .fly{width:20px;height:16px;display:inline-block}
+.btn:hover .fly .wl{animation:flapL .35s ease-in-out infinite alternate}
+.btn:hover .fly .wr{animation:flapR .35s ease-in-out infinite alternate}
+@keyframes flapL{to{transform:scaleX(.35)}}
+@keyframes flapR{to{transform:scaleX(.35)}}
+.fly .wl{transform-origin:10px 8px}.fly .wr{transform-origin:10px 8px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--ground) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-size:1.35rem}
+.brand svg{width:34px;height:28px}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-size:.95rem}
+.nav-links a{text-decoration:none;color:var(--ink-2)}
+.nav-links a:hover{color:var(--ink)}
+.nav .btn{padding:.55em 1.1em;font-size:.92rem}
+.practice-btn{background:var(--rose-soft);color:var(--rose);border:0;border-radius:999px;padding:.5em 1em;font-weight:600;font-size:.88rem;cursor:pointer}
+@media (max-width:820px){.nav-links{display:none}.nav .btn-primary{margin-left:auto}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero-bg{position:absolute;inset:-4%;background:url(img/fog.jpg) 50% 38%/cover no-repeat;opacity:var(--fog-o);animation:breathe 24s ease-in-out infinite alternate}
+.hero-wash{position:absolute;inset:0;background:linear-gradient(90deg,var(--ground) 18%,color-mix(in srgb,var(--ground) 55%,transparent) 55%,color-mix(in srgb,var(--ground) 10%,transparent) 100%)}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.07) translateY(-1.5%)}}
+@media (max-width:820px){.hero-wash{background:linear-gradient(180deg,color-mix(in srgb,var(--ground) 15%,transparent) 0%,color-mix(in srgb,var(--ground) 70%,transparent) 42%,var(--ground) 62%)}}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:32px;align-items:center;padding-block:clamp(56px,9vw,112px) clamp(64px,9vw,120px);pointer-events:none}
+.hero-inner>*{pointer-events:auto}
+.hero h1{font-size:clamp(2.9rem,7.6vw,6.1rem);letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--monarch)}
+.hero h1 .w{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:translateY(.35em);opacity:.0}to{transform:none;opacity:1}}
+.hero .lede{margin-top:22px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:34px;font-family:var(--mono);font-size:.78rem;color:var(--ink-3)}
+.hero-meta span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--monarch);margin-right:8px;vertical-align:1px}
+.hero-hint{justify-self:end;align-self:end;font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.08em}
+@media (max-width:820px){.hero-inner{grid-template-columns:1fr;padding-top:260px}.hero-hint{justify-self:start}}
+
+/* sections */
+section.band{padding-block:clamp(64px,9vw,110px)}
+.section-head{display:grid;gap:14px;margin-bottom:44px;max-width:760px}
+.alt{background:var(--ground-2)}
+
+/* welcome */
+.welcome{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,64px);align-items:center}
+.photo{position:relative;border-radius:180px 180px 18px 18px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:radial-gradient(120% 90% at 30% 20%,var(--monarch-soft),transparent 60%),radial-gradient(100% 80% at 80% 90%,var(--rose-soft),transparent 60%),var(--surface);box-shadow:var(--shadow);display:grid;place-items:center}
+.photo svg{width:46%;opacity:.95}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo .badge{position:absolute;right:14px;bottom:14px;width:54px;height:44px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));animation:hover 5s ease-in-out infinite}
+@keyframes hover{50%{transform:translateY(-6px) rotate(-6deg)}}
+.photo figcaption{position:absolute;left:16px;right:16px;bottom:14px;font-family:var(--mono);font-size:.7rem;color:var(--ink-3);text-align:center;letter-spacing:.06em}
+.welcome .body{display:grid;gap:18px}
+.welcome .body p{color:var(--ink-2);max-width:62ch}
+.quote{font-family:var(--display);font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.25;color:var(--ink)}
+.quote em{color:var(--rose)}
+@media (max-width:820px){.welcome{grid-template-columns:1fr}.photo{max-width:380px}}
+
+/* paths */
+.paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.path{background:var(--surface);border-radius:var(--r);padding:30px;display:grid;gap:16px;align-content:start;border:1px solid var(--line)}
+.path header{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.35em .8em;border-radius:999px;white-space:nowrap}
+.pill.open{background:var(--sage-soft);color:var(--sage)}
+.pill.soon{background:var(--amber-soft);color:var(--amber)}
+.pill.req{background:var(--monarch-soft);color:var(--monarch)}
+.pill.no{background:var(--ground-2);color:var(--ink-3)}
+.therapy{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 0;border-top:1px solid var(--line);cursor:pointer;transition:padding .3s}
+.therapy:hover{padding-left:8px}
+.therapy h4{margin:0;font-size:1.05rem;font-weight:600}
+.therapy .price{font-family:var(--mono);font-size:.85rem;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+.therapy p{grid-column:1/-1;color:var(--ink-2);font-size:.94rem;max-width:62ch}
+.therapy .tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-size:.74rem;color:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:.1em .65em}
+@media (max-width:820px){.paths{grid-template-columns:1fr}}
+
+/* offerings strip */
+.formats{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.formats span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.45em 1em;font-size:.9rem}
+
+/* moments */
+.moments{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:18px;align-items:start}
+.moments figure{margin:0;overflow:hidden;border-radius:14px;position:relative;box-shadow:var(--shadow)}
+.moments figure:nth-child(1){aspect-ratio:3/4;margin-top:40px}
+.moments figure:nth-child(2){aspect-ratio:9/15}
+.moments figure:nth-child(3){aspect-ratio:3/4;margin-top:90px}
+.moments img{width:100%;height:118%;object-fit:cover;display:block;will-change:transform}
+.moments-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:end;margin-bottom:36px}
+.sig{font-family:var(--mono);color:var(--rose);letter-spacing:.2em}
+@media (max-width:760px){.moments{grid-template-columns:1fr 1fr}.moments figure:nth-child(3){display:none}.moments figure:nth-child(1){margin-top:30px}}
+
+/* pricing */
+.pricing{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.price-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:10px;align-content:start}
+.price-card.feature{background:linear-gradient(160deg,rgba(43,26,44,.62),rgba(43,26,44,.88)),url(img/bokeh.jpg) center/cover;color:#FFF6F9;border-color:transparent}
+.price-card.feature .muted{color:rgba(255,246,249,.78)!important}
+.price-card.feature .muted{color:color-mix(in srgb,var(--ground) 70%,transparent)}
+.price-card .amt{font-family:var(--display);font-size:2.2rem;font-variant-numeric:tabular-nums}
+.price-card s{font-family:var(--mono);font-size:.85rem;opacity:.6}
+.muted{color:var(--ink-3);font-size:.9rem}
+@media (max-width:960px){.pricing{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.pricing{grid-template-columns:1fr}}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.member{display:grid;gap:14px;align-content:start}
+.member .photo{border-radius:14px;aspect-ratio:1/1}
+.member .photo svg{width:38%}
+.member .role{font-family:var(--mono);font-size:.74rem;color:var(--ink-3);letter-spacing:.05em}
+.member p{color:var(--ink-2);font-size:.95rem}
+.member.invite .photo{background:repeating-linear-gradient(135deg,transparent 0 12px,color-mix(in srgb,var(--line) 70%,transparent) 12px 13px),var(--ground);box-shadow:none;border:1.5px dashed var(--line)}
+@media (max-width:900px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.team{grid-template-columns:1fr}}
+
+/* locations */
+.locs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.loc{border-top:2px solid var(--ink);padding-top:18px;display:grid;gap:8px;align-content:start}
+.loc.future{border-top-style:dashed;border-top-color:var(--ink-3)}
+.loc p{color:var(--ink-2);font-size:.95rem}
+@media (max-width:820px){.locs{grid-template-columns:1fr}}
+
+/* booking */
+.booking{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr);gap:28px;align-items:start}
+.steps{display:grid;gap:14px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.step[data-locked="true"]{opacity:.55}
+.step h3{font-family:var(--body);font-weight:600;font-size:1rem;display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.step h3 .n{font-family:var(--mono);font-size:.75rem;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--ground-2);color:var(--ink-2)}
+.step[data-done="true"] h3 .n{background:var(--monarch);color:var(--on-accent)}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice{border:1.5px solid var(--line);background:var(--ground);border-radius:12px;padding:.6em .95em;cursor:pointer;text-align:left;display:grid;gap:2px;transition:border-color .2s,transform .2s}
+.choice small{color:var(--ink-3);font-size:.78rem}
+.choice:hover{border-color:var(--ink-3)}
+.choice[aria-pressed="true"]{border-color:var(--monarch);background:var(--monarch-soft)}
+.choice:disabled{cursor:not-allowed;opacity:.45;text-decoration:line-through}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.day{flex:0 0 auto;width:64px;padding:.55em 0;text-align:center;font-variant-numeric:tabular-nums}
+.day b{display:block;font-family:var(--display);font-weight:400;font-size:1.35rem;line-height:1.1}
+.times{margin-top:12px}
+.times .choice{font-family:var(--mono);font-size:.88rem;font-variant-numeric:tabular-nums}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form label{display:grid;gap:5px;font-size:.86rem;color:var(--ink-2)}
+.form .full{grid-column:1/-1}
+.form input,.form select,.form textarea{background:var(--ground);border:1.5px solid var(--line);border-radius:10px;padding:.65em .8em;font-size:.96rem}
+.form input:focus,.form textarea:focus,.form select:focus{border-color:var(--monarch);outline:none}
+.check{display:flex!important;grid-template-columns:none;gap:10px!important;align-items:start}
+.check input{margin-top:4px;accent-color:var(--monarch)}
+@media (max-width:560px){.form{grid-template-columns:1fr}}
+.summary{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);background:var(--ink);color:var(--ground);border-radius:18px;padding:26px;display:grid;gap:16px;overflow:hidden}
+.summary h3{font-size:1.6rem}
+.summary dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0;font-size:.93rem}
+.summary dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.6;padding-top:3px}
+.summary dd{margin:0}
+.summary .btn{background:var(--monarch);color:var(--on-accent);justify-content:center}
+.summary .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.summary .note{font-size:.8rem;opacity:.7}
+.status-msg{font-size:.9rem;padding:.7em .9em;border-radius:10px;background:color-mix(in srgb,var(--ground) 12%,transparent)}
+@media (max-width:900px){.booking{grid-template-columns:1fr}.summary{position:static}}
+.mine{margin-top:26px;display:grid;gap:10px}
+.appt{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.appt .date{font-family:var(--mono);font-size:.8rem;text-align:center;line-height:1.2;min-width:52px;font-variant-numeric:tabular-nums}
+.appt .date b{display:block;font-family:var(--display);font-weight:400;font-size:1.4rem}
+.appt .what{font-size:.94rem}
+.appt .what small{display:block;color:var(--ink-3)}
+
+/* faq */
+.faq{display:grid;gap:0;max-width:820px}
+.faq details{border-top:1px solid var(--line);padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-family:var(--display);font-size:1.3rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--monarch);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin-top:10px;color:var(--ink-2);max-width:65ch}
+
+footer{border-top:1px solid var(--line);padding-block:40px;color:var(--ink-3);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+
+/* practice dashboard */
+#practice{background:var(--ground-2);border-bottom:1px solid var(--line);padding-block:40px 56px}
+.dash-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:end;margin-bottom:26px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.kpi b{display:block;font-family:var(--display);font-weight:400;font-size:2rem;font-variant-numeric:tabular-nums}
+.kpi span{font-size:.82rem;color:var(--ink-3)}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filters select{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.4em .9em;font-size:.88rem}
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:760px}
+th{text-align:left;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:12px 14px;border-bottom:1px solid var(--line)}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td .sub{color:var(--ink-3);font-size:.8rem;display:block}
+.tbl-actions{display:flex;gap:6px}
+.mini{border:1px solid var(--line);background:var(--ground);border-radius:8px;padding:.3em .7em;font-size:.8rem;cursor:pointer}
+.mini.ok{border-color:var(--sage);color:var(--sage)}
+.mini.bad{color:var(--rose)}
+.empty{padding:28px;text-align:center;color:var(--ink-3)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 60px));visibility:hidden;background:var(--ink);color:var(--ground);padding:.8em 1.2em;border-radius:999px;font-size:.92rem;transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:50;max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+#liftoff{position:fixed;inset:0;pointer-events:none;z-index:60;width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="bfly" viewBox="0 0 120 96">
+      <g stroke="var(--vein)" stroke-width="2.4" stroke-linejoin="round">
+        <path d="M58 44 C40 8 8 2 6 22 C4 38 24 48 58 50Z" fill="var(--monarch)"/>
+        <path d="M58 52 C34 54 16 70 26 84 C36 96 52 80 58 58Z" fill="var(--monarch)"/>
+        <path d="M62 44 C80 8 112 2 114 22 C116 38 96 48 62 50Z" fill="var(--monarch)"/>
+        <path d="M62 52 C86 54 104 70 94 84 C84 96 68 80 62 58Z" fill="var(--monarch)"/>
+        <path d="M58 46 L22 20 M58 48 L14 32 M58 56 L34 78 M62 46 L98 20 M62 48 L106 32 M62 56 L86 78" fill="none" stroke-width="1.6"/>
+      </g>
+      <ellipse cx="60" cy="52" rx="3.2" ry="20" fill="var(--vein)"/>
+      <path d="M59 34 C56 24 52 20 48 18 M61 34 C64 24 68 20 72 18" stroke="var(--vein)" stroke-width="1.4" fill="none"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Monarch Healing home">
+      <svg viewBox="0 0 120 96" aria-hidden="true"><use href="#bfly"/></svg>
+      Monarch Healing
+    </a>
+    <div class="nav-links">
+      <a href="#welcome">About</a>
+      <a href="#therapies">Therapies</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#team">Practitioners</a>
+      <a href="#locations">Locations</a>
+    </div>
+        <a class="btn btn-primary" href="#book">Book</a>
+  </div>
+</nav>
+
+
+
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div><div class="hero-wash" aria-hidden="true"></div>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div>
+      <p class="eyebrow">Jin Shin Do® · Quantum Life Guidance · Bodywork</p>
+      <h1 style="margin-top:16px"><span class="w">What</span> <span class="w" style="animation-delay:.08s">if</span> <span class="w" style="animation-delay:.16s">it</span> <span class="w" style="animation-delay:.24s">could</span> <span class="w" style="animation-delay:.32s">only</span> <em class="w" style="animation-delay:.44s">get better?</em></h1>
+      <p class="lede">In person and online, attuned intuitive sessions with Monika Kulaga that reconnect you to yourSelf and optimal health.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#book"><svg class="fly" viewBox="0 0 20 16" aria-hidden="true"><path class="wl" d="M10 8 C7 1 1 1 1 5 C1 9 6 9 10 9Z M10 9 C6 10 3 14 6 15 C8 16 10 12 10 9Z" fill="var(--monarch)"/><path class="wr" d="M10 8 C13 1 19 1 19 5 C19 9 14 9 10 9Z M10 9 C14 10 17 14 14 15 C12 16 10 12 10 9Z" fill="var(--monarch)"/></svg>Book a session</a>
+        <a class="btn btn-ghost" href="#book" data-quick="call">Free check-in call</a>
+      </div>
+      <div class="hero-meta"><span>In person &amp; distance</span><span>Individual · couples · groups</span><span>RMT opening soon</span></div>
+    </div>
+    <p class="hero-hint">Tap the sky to call the butterflies home</p>
+  </div>
+</header>
+
+<main>
+<section class="band" id="welcome">
+  <div class="wrap welcome">
+    <figure class="photo" style="margin:0">
+      <img src="img/portrait.jpg" alt="Monika Kulaga smiling in front of a colourful mural" width="900" height="1049">
+      <svg class="badge" viewBox="0 0 120 96" aria-hidden="true"><use href="#bfly"/></svg>
+    </figure>
+    <div class="body">
+      <p class="eyebrow">Hello and welcome</p>
+      <h2>Monika is at the heart of Monarch Healing.</h2>
+      <p class="quote">A guide and teacher for heightened awareness, <em>healing</em>, and realized wholeness.</p>
+      <p>We all carry beliefs, habits and old hurts that once protected us and now only hold us back. Monika reads the mental, emotional and physical layers of a person with high intuition and Quantum Life Guidance methods, and helps clear what has been stored but no longer nourishes you.</p>
+      <p>Bodywork gives those shifts a physical path. The session ends with the body fully relaxed and back in balance.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="therapies">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What we do</p>
+      <h2>Two paths, one practice.</h2>
+      <p class="lede">Intuitive and energy work is open now. Registered Massage Therapy opens once Monika's RMT registration in BC is complete, with receipts you can submit to extended health plans.</p>
+    </div>
+    <div class="paths" id="pathsEl"></div>
+    <div class="formats" aria-label="Session formats"><span>Free phone check-in</span><span>Individual</span><span>Couples</span><span>Groups</span><span>Walking sessions</span><span>Distance</span><span>Membership</span></div>
+  </div>
+</section>
+
+<section class="band" id="moments">
+  <div class="wrap">
+    <div class="moments-head">
+      <div class="section-head" style="margin:0">
+        <p class="eyebrow">Moments like these</p>
+        <h2>Nature heals.</h2>
+        <p class="quote" style="font-size:clamp(1.2rem,2.2vw,1.55rem);max-width:30ch">“Nature poetry, where ‘nothing’ happens and everything exists.”</p>
+      </div>
+      <a class="btn btn-ghost" href="https://www.instagram.com/monarchhealing_/" target="_blank" rel="noopener"><span class="sig">⇡♡⇡</span> Follow on Instagram</a>
+    </div>
+    <div class="moments">
+      <figure><img src="img/lake.jpg" alt="Monika resting on a rock above a turquoise alpine lake" loading="lazy" data-par="0.10"></figure>
+      <figure><img src="img/summit.jpg" alt="Monika on a mountain ridge among autumn huckleberry bushes" loading="lazy" data-par="0.18"></figure>
+      <figure><img src="img/forest.jpg" alt="Monika touching a moss-covered maple in a cedar forest" loading="lazy" data-par="0.06"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Prices · CAD</p>
+      <h2>Come once, or commit to the change.</h2>
+      <p class="lede">Session fees depend on length and format, and are confirmed on your free check-in call.</p>
+    </div>
+    <div class="pricing">
+      <div class="price-card"><span class="muted">Check-in call</span><div class="amt">$0</div><p class="muted">20 minutes by phone to see what you need and whether we're a fit.</p></div>
+      <div class="price-card"><span class="muted">Single session</span><div class="amt">$150–250</div><p class="muted">In person or distance, with or without bodywork.</p></div>
+      <div class="price-card feature"><span class="muted">5-session package</span><div class="amt">$1,125</div><s>$1,250</s><p class="muted">Save 10%. For a real shift over a few weeks.</p></div>
+      <div class="price-card"><span class="muted">10-session package</span><div class="amt">$2,250</div><s>$2,500</s><p class="muted">Save 10%. Deep, steady work across a season.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Practitioners</p>
+      <h2>A growing circle of healers.</h2>
+      <p class="lede">Monarch Healing is built to welcome more practitioners and more studios, each keeping the same care Monika brings to every session.</p>
+    </div>
+    <div class="team" id="teamEl"></div>
+  </div>
+</section>
+
+<section class="band alt" id="locations">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Locations</p>
+      <h2>Wherever you are, the work reaches you.</h2>
+    </div>
+    <div class="locs" id="locsEl"></div>
+  </div>
+</section>
+
+<section class="band" id="book">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Book</p>
+      <h2>Choose your session.</h2>
+      <p class="lede">Pick a therapy, a practitioner and a time. Your request goes straight to Monika by email, and she confirms every booking personally, usually within a day.</p>
+    </div>
+    <div class="booking">
+      <div class="steps">
+        <div class="step" id="s1"><h3><span class="n">1</span>Therapy</h3><div class="choices" id="cTherapy"></div></div>
+        <div class="step" id="s2"><h3><span class="n">2</span>Practitioner &amp; location</h3><div class="choices" id="cTher"></div><div class="choices" id="cLoc" style="margin-top:10px"></div><div class="choices" id="cFormat" style="margin-top:10px"></div></div>
+        <div class="step" id="s3"><h3><span class="n">3</span>Date &amp; time</h3><div class="days" id="cDays"></div><div class="choices times" id="cTimes"></div></div>
+        <div class="step" id="s4"><h3><span class="n">4</span>Your details</h3>
+          <form class="form" id="details" novalidate>
+            <label>Full name<input id="fName" autocomplete="name" required></label>
+            <label>Phone<input id="fPhone" type="tel" autocomplete="tel"></label>
+            <label class="full">Email<input id="fEmail" type="email" autocomplete="email" required></label>
+            <label class="full">What would you like support with?<textarea id="fNotes" rows="3" placeholder="Optional. A few words is plenty."></textarea></label>
+            <label class="full check"><input type="checkbox" id="fFirst"> This is my first session with Monarch Healing</label>
+            <label class="full check"><input type="checkbox" id="fPolicy"> I understand sessions can be moved or cancelled up to 24 hours before the start time</label>
+          </form>
+        </div>
+      </div>
+      <aside class="summary" aria-live="polite">
+        <p class="eyebrow" style="color:var(--monarch)">Your session</p>
+        <h3 id="sumTitle">Choose a therapy</h3>
+        <dl id="sumList"></dl>
+        <button class="btn" id="submitBtn" type="button" disabled>Request booking</button>
+        <p class="status-msg" id="statusMsg" hidden></p>
+        <p class="note" id="sumNote">Nothing is charged online. Payment is taken at your session.</p>
+      </aside>
+    </div>
+    <div class="mine" id="mine" hidden>
+      <p class="eyebrow">Requests from this visit</p>
+      <div id="mineList" style="display:grid;gap:10px"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="faq">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Questions</p><h2>Before you come.</h2></div>
+    <div class="faq">
+      <details><summary>What is Quantum Life Guidance?</summary><p>A focused, intuitive way of working with your body, mind, feelings and spirit. It reaches beliefs and your sense of self below conscious thought, so resistance, old patterns, inherited hurts and trauma can be released and you can live more aligned and free.</p></details>
+      <details><summary>Can distance sessions really work?</summary><p>Yes. Quantum Life Guidance is offered by phone or video as well as in person. Many clients combine distance work between in-person bodywork sessions.</p></details>
+      <details><summary>Will my extended health plan cover it?</summary><p>Registered Massage Therapy receipts will be accepted by most extended health plans once RMT services open. Intuitive and energy work is usually not covered, so check your plan.</p></details>
+      <details><summary>What should I bring?</summary><p>Comfortable clothing, water, and whatever is on your mind. For bodywork, arrive ten minutes early for your first visit.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Monarch Healing · Counselling · Coaching · Bodywork</span>
+    <span style="display:flex;gap:20px;flex-wrap:wrap"><a href="mailto:contactmonarchhealing@gmail.com">contactmonarchhealing@gmail.com</a><a href="https://www.instagram.com/monarchhealing_/" target="_blank" rel="noopener">Instagram @monarchhealing_</a></span>
+  </div>
+</footer>
+
+<canvas id="liftoff" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ---------- practice data: therapies, practitioners, locations ---------- */
+const MONIKA_EMAIL="contactmonarchhealing@gmail.com";
+const THERAPIES=[
+  {id:"call",name:"Free check-in call",path:"energy",mins:20,price:"Free",modes:["distance"],desc:"A short phone call to talk through what you need and choose the right session.",tags:["Phone"]},
+  {id:"qlg",name:"Quantum Life Guidance",path:"energy",mins:75,price:"$150–250",modes:["nv","distance"],desc:"Intuitive guidance to clear old patterns, beliefs and pain, in person or at a distance. Can be combined with any bodywork.",tags:["In person","Distance","Couples","Groups"]},
+  {id:"acu",name:"Jin Shin Do® acupressure",path:"energy",mins:60,price:"$150–250",modes:["nv"],desc:"A Japanese acupressure method. Gentle, held pressure on points along the meridians restores flow and releases emotional and physical blockages, tailored to what needs attention now.",tags:["In person"]},
+  {id:"reflex",name:"Reflexology",path:"energy",mins:60,price:"$150–250",modes:["nv"],desc:"Precise pressure on the feet, where a map of the whole body and its systems can be reached.",tags:["In person"]},
+  {id:"rmt",name:"Registered Massage Therapy",path:"rmt",mins:60,price:"Rates at launch",modes:["nv"],soon:true,desc:"Clinical massage for pain, tension and recovery, with receipts for extended health plans.",tags:["30 · 60 · 90 min","Insurance receipts"]},
+  {id:"stone",name:"Hot stone massage",path:"rmt",mins:90,price:"Rates at launch",modes:["nv"],soon:true,desc:"Warm basalt stones relax deep muscle, ease tension and leave the whole body calm and energized.",tags:["90 min"]}
+];
+const PRACTITIONERS=[
+  {id:"monika",name:"Monika Kulaga",role:"Founder · Lead practitioner",photo:"img/portrait.jpg",therapies:["call","qlg","acu","reflex","rmt","stone"],bio:"Intuitive guide and Quantum Life Guidance practitioner, Jin Shin Do® acupressure practitioner and reflexologist, completing her RMT training in BC."}
+];
+const LOCATIONS=[
+  {id:"nv",name:"North Vancouver studio",area:"North Vancouver, BC",desc:"A quiet treatment room for bodywork and in-person guidance. The address is sent with your confirmation."},
+  {id:"distance",name:"Distance sessions",area:"Phone or video, anywhere",desc:"Quantum Life Guidance and check-in calls, wherever you are."},
+  {id:"next",name:"Your community next",area:"Vancouver · Tri-Cities · Fraser Valley",future:true,desc:"New Monarch Healing studios will open with partner practitioners. Tell us where you'd like one."}
+];
+const FORMATS=["Individual","Couples","Group","Walking"];
+const HOURS={2:["10:00","11:30","13:30","15:00","16:30"],3:["10:00","11:30","13:30","15:00","16:30"],4:["12:00","13:30","15:00","16:30","18:00"],5:["10:00","11:30","13:30","15:00"],6:["10:00","11:30","13:30"]};
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const byId=(arr,id)=>arr.find(x=>x.id===id);
+const pad=n=>String(n).padStart(2,"0");
+const ymd=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtDate=s=>{if(!s)return"";const [y,m,d]=s.split("-").map(Number);const dt=new Date(y,m-1,d);return DOW[dt.getDay()]+" "+MON[m-1]+" "+d};
+const fmtTime=t=>{if(!t)return"";let [h,m]=t.split(":").map(Number);const ap=h>=12?"pm":"am";h=h%12||12;return h+":"+pad(m)+" "+ap};
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),3200)}
+
+/* ---------- render static sections ---------- */
+function renderPaths(){
+  const groups=[{key:"energy",title:"Intuitive & energy work",pill:'<span class="pill open">Booking now</span>'},{key:"rmt",title:"Registered Massage Therapy",pill:'<span class="pill soon">Opening soon · waitlist</span>'}];
+  $("#pathsEl").innerHTML=groups.map(g=>`<article class="path"><header><h3>${g.title}</h3>${g.pill}</header>${THERAPIES.filter(t=>t.path===g.key).map(t=>`<div class="therapy" data-pick="${t.id}" role="button" tabindex="0" aria-label="Book ${esc(t.name)}"><h4>${esc(t.name)}</h4><span class="price">${esc(t.price)}${t.soon?"":" · "+t.mins+" min"}</span><p>${esc(t.desc)}</p><div class="tags">${t.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join("")}</div></div>`).join("")}</article>`).join("");
+}
+function renderTeam(){
+  const fly='<svg viewBox="0 0 120 96" aria-hidden="true"><use href="#bfly"/></svg>';
+  $("#teamEl").innerHTML=PRACTITIONERS.map(p=>`<article class="member"><figure class="photo" style="margin:0">${p.photo?`<img src="${p.photo}" alt="${esc(p.name)}" style="object-position:50% 12%">`:fly}</figure><div><h3>${esc(p.name)}</h3><p class="role">${esc(p.role)}</p></div><p>${esc(p.bio)}</p></article>`).join("")+
+  `<article class="member invite"><figure class="photo" style="margin:0">${fly}</figure><div><h3>Join the practice</h3><p class="role">RMTs &amp; energy practitioners</p></div><p>We're building a team of therapists who share this way of working. Shared booking, a calm studio and a community of clients.</p></article>`+
+  `<article class="member invite"><figure class="photo" style="margin:0">${fly}</figure><div><h3>Open a Monarch studio</h3><p class="role">Partner locations</p></div><p>Bring Monarch Healing to your community with the same booking system, brand and standards of care.</p></article>`;
+}
+function renderLocs(){
+  $("#locsEl").innerHTML=LOCATIONS.map(l=>`<article class="loc ${l.future?"future":""}"><span class="pill ${l.future?"no":"open"}" style="justify-self:start">${l.future?"Planned":"Open"}</span><h3>${esc(l.name)}</h3><p class="muted" style="font-family:var(--mono);font-size:.78rem">${esc(l.area)}</p><p>${esc(l.desc)}</p></article>`).join("");
+}
+
+/* ---------- booking state ---------- */
+const S={therapy:null,ther:null,loc:null,format:"Individual",date:null,time:null};
+let taken=new Set();      // "ther|date|time"
+let myDoc=null;           // {name,email,phone,appts:[]}
+let DB=null,USER=null,UID=null,demo=false;
+
+function days(){const out=[];const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+1);while(out.length<14){if(HOURS[d.getDay()])out.push(new Date(d));d.setDate(d.getDate()+1)}return out}
+function choice(label,small,pressed,attrs,disabled){return `<button type="button" class="choice" aria-pressed="${pressed}" ${attrs} ${disabled?"disabled":""}><span>${label}</span>${small?`<small>${small}</small>`:""}</button>`}
+
+function renderBooking(){
+  const t=byId(THERAPIES,S.therapy);
+  $("#cTherapy").innerHTML=THERAPIES.map(x=>choice(esc(x.name),x.soon?"Waitlist":x.price+" · "+x.mins+" min",S.therapy===x.id,`data-t="${x.id}"`)).join("");
+  const thers=t?PRACTITIONERS.filter(p=>p.therapies.includes(t.id)):[];
+  $("#cTher").innerHTML=t?thers.map(p=>choice(esc(p.name),esc(p.role.split("·")[1]||p.role),S.ther===p.id,`data-p="${p.id}"`)).join(""):'<p class="muted">Choose a therapy first.</p>';
+  $("#cLoc").innerHTML=t?LOCATIONS.filter(l=>!l.future&&t.modes.includes(l.id)).map(l=>choice(esc(l.name),esc(l.area),S.loc===l.id,`data-l="${l.id}"`)).join(""):"";
+  $("#cFormat").innerHTML=t&&!t.soon&&t.id!=="call"?FORMATS.map(f=>choice(f,"",S.format===f,`data-f="${f}"`)).join(""):"";
+  const waitlist=t&&t.soon;
+  $("#s3").hidden=!!waitlist;
+  if(!waitlist){
+    const ready=S.ther&&S.loc;
+    $("#cDays").innerHTML=ready?days().map(d=>{const k=ymd(d);const free=HOURS[d.getDay()].some(h=>!taken.has(S.ther+"|"+k+"|"+h));return `<button type="button" class="choice day" aria-pressed="${S.date===k}" data-d="${k}" ${free?"":"disabled"}><small>${DOW[d.getDay()]}</small><b>${d.getDate()}</b><small>${MON[d.getMonth()]}</small></button>`}).join(""):'<p class="muted">Choose a practitioner and location.</p>';
+    if(ready&&S.date){const [y,m,dd]=S.date.split("-").map(Number);const hrs=HOURS[new Date(y,m-1,dd).getDay()]||[];$("#cTimes").innerHTML=hrs.map(h=>choice(fmtTime(h),"",S.time===h,`data-h="${h}"`,taken.has(S.ther+"|"+S.date+"|"+h))).join("")}else $("#cTimes").innerHTML="";
+  }
+  $("#s1").dataset.done=!!t;
+  $("#s2").dataset.done=!!(S.ther&&S.loc);$("#s2").dataset.locked=!t;
+  $("#s3").dataset.done=!!(S.date&&S.time);$("#s3").dataset.locked=!(S.ther&&S.loc);
+  $("#s4").querySelector(".n").textContent=waitlist?"3":"4";
+  renderSummary();
+}
+function detailsOk(){return $("#fName").value.trim().length>1&&/^\S+@\S+\.\S+$/.test($("#fEmail").value.trim())&&$("#fPolicy").checked}
+function renderSummary(){
+  const t=byId(THERAPIES,S.therapy),p=byId(PRACTITIONERS,S.ther),l=byId(LOCATIONS,S.loc);
+  $("#sumTitle").textContent=t?t.name:"Choose a therapy";
+  const rows=[];
+  if(t)rows.push(["Length",t.soon?"30, 60 or 90 min":t.mins+" min"],["Fee",t.price]);
+  if(p)rows.push(["With",p.name]);
+  if(l)rows.push(["Where",l.name]);
+  if(t&&!t.soon&&t.id!=="call")rows.push(["Format",S.format]);
+  if(S.date)rows.push(["When",fmtDate(S.date)+(S.time?" · "+fmtTime(S.time):"")]);
+  $("#sumList").innerHTML=rows.map(r=>`<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join("");
+  const waitlist=t&&t.soon;
+  const ok=t&&p&&l&&(waitlist||(S.date&&S.time))&&detailsOk();
+  const btn=$("#submitBtn");btn.disabled=!ok;btn.textContent=waitlist?"Join the RMT waitlist":"Request booking";
+  $("#sumNote").textContent=waitlist?"You'll hear first when RMT booking opens. No commitment.":"Nothing is charged online. Payment is taken at your session.";
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button.choice,[data-pick],[data-quick]");if(!b)return;
+  if(b.dataset.pick||b.dataset.quick){const id=b.dataset.pick||b.dataset.quick;pickTherapy(id);if(b.dataset.pick)$("#book").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});return}
+  if(b.dataset.t)pickTherapy(b.dataset.t);
+  else if(b.dataset.p){S.ther=b.dataset.p;S.date=S.time=null}
+  else if(b.dataset.l){S.loc=b.dataset.l}
+  else if(b.dataset.f){S.format=b.dataset.f}
+  else if(b.dataset.d){S.date=b.dataset.d;S.time=null}
+  else if(b.dataset.h){S.time=b.dataset.h}
+  renderBooking();
+});
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.dataset&&e.target.dataset.pick){e.preventDefault();e.target.click()}});
+function pickTherapy(id){const t=byId(THERAPIES,id);S.therapy=id;const ps=PRACTITIONERS.filter(p=>p.therapies.includes(id));S.ther=ps.length===1?ps[0].id:null;const ls=LOCATIONS.filter(l=>!l.future&&t.modes.includes(l.id));S.loc=ls.length===1?ls[0].id:(ls.find(l=>l.id===S.loc)?S.loc:null);S.date=S.time=null;renderBooking()}
+["fName","fEmail","fPhone","fPolicy","fFirst","fNotes"].forEach(id=>document.getElementById(id).addEventListener("input",renderSummary));
+$("#details").addEventListener("submit",e=>e.preventDefault());
+
+$("#submitBtn").addEventListener("click",async()=>{
+  const t=byId(THERAPIES,S.therapy);const btn=$("#submitBtn");const msg=$("#statusMsg");
+  const appt={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),therapy:t.id,ther:S.ther,loc:S.loc,format:t.soon||t.id==="call"?"Individual":S.format,date:t.soon?null:S.date,time:t.soon?null:S.time,notes:$("#fNotes").value.trim().slice(0,800),first:$("#fFirst").checked,status:t.soon?"waitlist":"requested",createdAt:new Date().toISOString()};
+  const contact={name:$("#fName").value.trim().slice(0,120),email:$("#fEmail").value.trim().slice(0,160),phone:$("#fPhone").value.trim().slice(0,40)};
+  btn.disabled=true;btn.textContent="Sending…";
+  const rect=btn.getBoundingClientRect();
+  try{
+    if(false){
+      if(appt.date){const slotId=S.ther+"_"+appt.date+"_"+appt.time.replace(":","");const ref=DB.doc("slots/"+slotId);const snap=await ref.get();if(snap.exists&&snap.data().taken){throw{code:"taken"}}await ref.set({taken:true,ther:S.ther,date:appt.date,time:appt.time})}
+      const prev=myDoc&&Array.isArray(myDoc.appts)?myDoc.appts.slice():[];
+      await DB.doc("bookings/"+UID).set({...contact,appts:[...prev,appt],updatedAt:new Date().toISOString()});
+      msg.textContent=t.soon?"You're on the waitlist. Monika will be in touch when RMT booking opens.":"Request sent. Monika will confirm by email, usually within a day.";
+    }else{
+      demo=true;myDoc={...contact,appts:[...((myDoc&&myDoc.appts)||[]),appt]};renderMine();
+      if(appt.date)taken.add(S.ther+"|"+appt.date+"|"+appt.time);
+      const th=byId(PRACTITIONERS,appt.ther),lo=byId(LOCATIONS,appt.loc);
+      const lines=[(t.soon?"RMT waitlist request":"Booking request")+" — "+t.name,"",
+        "Name: "+contact.name,"Email: "+contact.email,"Phone: "+(contact.phone||"—"),
+        "Practitioner: "+(th?th.name:""),"Location: "+(lo?lo.name:""),
+        t.soon?"":"Format: "+appt.format, t.soon?"":"Requested time: "+fmtDate(appt.date)+" at "+fmtTime(appt.time),
+        "First session: "+(appt.first?"Yes":"No"),"","Notes: "+(appt.notes||"—")].filter(x=>x!=="");
+      const subj=(t.soon?"RMT waitlist: ":"Booking request: ")+t.name+(appt.date?" · "+fmtDate(appt.date)+" "+fmtTime(appt.time):"");
+      location.href="mailto:"+MONIKA_EMAIL+"?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(lines.join("\n"));
+      msg.innerHTML="Your email app should open with the request ready to send. If it didn't, email <strong>"+MONIKA_EMAIL+"</strong> with the details above.";
+    }
+    msg.hidden=false;liftoff(rect);toast(t.soon?"Added to the waitlist":"Booking requested");
+    S.date=S.time=null;renderBooking();
+  }catch(err){
+    msg.hidden=false;
+    msg.textContent=err&&err.code==="taken"?"That time was just booked by someone else. Please choose another time.":err&&err.code==="invalid_argument"?"Your access to this page doesn't allow booking. Ask Andre or Monika for contributor access.":"The request didn't go through. Check your connection and try again.";
+    if(err&&err.code==="taken"){S.time=null;renderBooking()}else renderSummary();
+  }
+});
+
+function renderMine(){
+  const list=(myDoc&&myDoc.appts)||[];
+  $("#mine").hidden=!list.length;
+  $("#mineList").innerHTML=list.slice().reverse().map(a=>{const t=byId(THERAPIES,a.therapy)||{name:a.therapy};const l=byId(LOCATIONS,a.loc)||{name:""};const d=a.date?a.date.split("-").map(Number):null;
+    return `<div class="appt"><div class="date">${d?`${MON[d[1]-1]}<b>${d[2]}</b>${fmtTime(a.time)}`:"<b>—</b>list"}</div><div class="what">${esc(t.name)}<small>${esc(l.name)}${a.format&&a.format!=="Individual"?" · "+esc(a.format):""}</small></div>${statusPill(a.status)}</div>`}).join("");
+}
+function statusPill(s){const m={requested:["req","Requested"],confirmed:["open","Confirmed"],waitlist:["soon","Waitlist"],cancelled:["no","Cancelled"]}[s]||["no",s];return `<span class="pill ${m[0]}">${m[1]}</span>`}
+
+renderPaths();renderTeam();renderLocs();renderBooking();
+
+/* ---------- butterfly sky ---------- */
+(function(){
+  const cv=$("#sky"),ctx=cv.getContext("2d");const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W=0,H=0,dpr=1,flies=[],mode="gather",modeT=0,mouse={x:-999,y:-999},colors={};
+  function readColors(){const cs=getComputedStyle(document.documentElement);colors={m:cs.getPropertyValue("--monarch").trim(),v:cs.getPropertyValue("--vein").trim(),r:cs.getPropertyValue("--rose").trim()}}
+  function heartCenter(){return W>820?{x:W*.74,y:H*.46,s:Math.min(W*.012,H*.021)}:{x:W*.5,y:128,s:Math.min(W*.022,5.6)}}
+  function heartPt(i,n){const t=(i/n)*Math.PI*2;const c=heartCenter();return{x:c.x+16*Math.pow(Math.sin(t),3)*c.s,y:c.y-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*c.s}}
+  function resize(){const r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);const n=W>820?24:14;if(flies.length!==n)init(n)}
+  function init(n){flies=[];for(let i=0;i<n;i++){flies.push({x:Math.random()<.5?-40:W+40,y:Math.random()*H,vx:0,vy:0,ang:0,ph:Math.random()*6.28,sz:(W>820?11:8)+Math.random()*5,i,wob:Math.random()*1000})}}
+  function draw(f,flap){const s=f.sz;ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.ang);
+    for(const side of[-1,1]){ctx.save();ctx.scale(side*(.25+.75*flap),1);
+      ctx.beginPath();ctx.moveTo(0,-1);ctx.bezierCurveTo(-.4*s,-2.2*s,-2*s,-2.3*s,-1.9*s,-1.2*s);ctx.bezierCurveTo(-1.8*s,-.2*s,-.8*s,.1*s,0,0);ctx.closePath();
+      ctx.fillStyle=colors.m;ctx.fill();ctx.lineWidth=Math.max(1,s*.12);ctx.strokeStyle=colors.v;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(0,.2*s);ctx.bezierCurveTo(-1.2*s,.2*s,-1.6*s,1.2*s,-1*s,1.5*s);ctx.bezierCurveTo(-.5*s,1.7*s,-.1*s,1*s,0,.4*s);ctx.closePath();ctx.fill();ctx.stroke();
+      ctx.beginPath();ctx.moveTo(0,-.2*s);ctx.lineTo(-1.4*s,-1.3*s);ctx.moveTo(0,.4*s);ctx.lineTo(-.9*s,1.2*s);ctx.lineWidth=Math.max(.6,s*.06);ctx.stroke();ctx.restore()}
+    ctx.fillStyle=colors.v;ctx.beginPath();ctx.ellipse(0,.1*s,.12*s,.8*s,0,0,6.28);ctx.fill();ctx.restore()}
+  function step(t){ctx.clearRect(0,0,W,H);modeT+=1/60;
+    if(mode==="gather"&&modeT>6){mode="drift";modeT=0}
+    // faint heart trace while gathered
+    if(mode==="gather"&&modeT>1.4){const a=Math.min(1,(modeT-1.4)/1.2)*(modeT>5?Math.max(0,(6-modeT)):1);ctx.save();ctx.globalAlpha=.28*a;ctx.setLineDash([2,7]);ctx.strokeStyle=colors.r;ctx.lineWidth=1.5;ctx.beginPath();for(let i=0;i<=80;i++){const p=heartPt(i,80);i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)}ctx.stroke();ctx.restore()}
+    for(const f of flies){let tx,ty;
+      if(mode==="gather"){const p=heartPt(f.i,flies.length);tx=p.x;ty=p.y+Math.sin(t/400+f.ph)*3}
+      else{f.wob+=.004;tx=W*(.5+.45*Math.sin(f.wob*1.3+f.i))+Math.sin(t/900+f.i)*40;ty=H*(.5+.4*Math.cos(f.wob*.9+f.i*1.7))}
+      let ax=(tx-f.x)*(mode==="gather"?.0022:.0006),ay=(ty-f.y)*(mode==="gather"?.0022:.0006);
+      const dx=f.x-mouse.x,dy=f.y-mouse.y,d2=dx*dx+dy*dy;if(d2<14000){ax+=dx/Math.sqrt(d2+1)*.35;ay+=dy/Math.sqrt(d2+1)*.35}
+      ay+=Math.sin(t/260+f.ph)*.05;
+      f.vx=(f.vx+ax)*.94;f.vy=(f.vy+ay)*.94;f.x+=f.vx;f.y+=f.vy;
+      const tgt=Math.atan2(f.vy,f.vx)+Math.PI/2;const sp=Math.hypot(f.vx,f.vy);f.ang+=((sp>.2?Math.max(-.6,Math.min(.6,f.vx*.25)):0)-f.ang)*.08;
+      const flap=.5+.5*Math.sin(t/(sp>1.2?55:95)+f.ph);draw(f,flap)}
+    if(!reduce)requestAnimationFrame(step)}
+  function still(){ctx.clearRect(0,0,W,H);flies.forEach(f=>{const p=heartPt(f.i,flies.length);f.x=p.x;f.y=p.y;f.ang=0;draw(f,.8)})}
+  readColors();resize();
+  addEventListener("resize",()=>{resize();if(reduce)still()});
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{readColors();if(reduce)still()});
+  new MutationObserver(()=>{readColors();if(reduce)still()}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  const hero=$(".hero");
+  hero.addEventListener("pointermove",e=>{const r=cv.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+  hero.addEventListener("pointerleave",()=>{mouse.x=mouse.y=-999});
+  hero.addEventListener("click",e=>{if(e.target.closest("a,button"))return;mode="gather";modeT=0});
+  if(reduce)still();else requestAnimationFrame(step);
+})();
+
+/* ---------- parallax on the moments strip ---------- */
+(function(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const imgs=[...document.querySelectorAll("[data-par]")];let ticking=false;
+function upd(){ticking=false;const vh=innerHeight;imgs.forEach(i=>{const r=i.parentElement.getBoundingClientRect();const c=(r.top+r.height/2-vh/2)/vh;const o=Math.max(-7,Math.min(7,-c*parseFloat(i.dataset.par)*45));i.style.transform=`translateY(${(-7.5+o).toFixed(2)}%)`})}
+addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});upd()})();
+
+/* ---------- liftoff: a butterfly rises from the booking button ---------- */
+function liftoff(rect){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const cv=$("#liftoff"),ctx=cv.getContext("2d");const dpr=Math.min(devicePixelRatio||1,2);cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  const cs=getComputedStyle(document.documentElement);const m=cs.getPropertyValue("--monarch").trim(),v=cs.getPropertyValue("--vein").trim();
+  const bs=Array.from({length:5},(_,i)=>({x:rect.left+rect.width*(.2+.15*i),y:rect.top+rect.height/2,vx:(Math.random()-.5)*2,vy:-2-Math.random()*2,ph:Math.random()*6,s:8+Math.random()*6}));
+  const t0=performance.now();
+  (function f(t){const k=(t-t0)/1800;ctx.clearRect(0,0,innerWidth,innerHeight);if(k>1)return;
+    bs.forEach(b=>{b.x+=b.vx+Math.sin(t/200+b.ph)*1.2;b.y+=b.vy;b.vy*=.995;const fl=.5+.5*Math.sin(t/60+b.ph);ctx.save();ctx.globalAlpha=1-k;ctx.translate(b.x,b.y);
+      for(const sd of[-1,1]){ctx.save();ctx.scale(sd*(.25+.75*fl),1);ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(-.4*b.s,-2*b.s,-2*b.s,-2*b.s,-1.8*b.s,-.8*b.s);ctx.bezierCurveTo(-1.6*b.s,.8*b.s,-.6*b.s,1.4*b.s,0,.6*b.s);ctx.closePath();ctx.fillStyle=m;ctx.fill();ctx.strokeStyle=v;ctx.lineWidth=1.2;ctx.stroke();ctx.restore()}
+      ctx.restore()});requestAnimationFrame(f)})(t0);
+}
+</script>
+
+</body>
+</html>

@@ -47,7 +47,7 @@
   --vein:#120A11; --on-accent:#1A0E14; --shadow:0 18px 50px -24px rgba(0,0,0,.7); --fog-o:.28;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1160px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
 h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
@@ -81,7 +81,23 @@ button,input,select,textarea{font:inherit;color:inherit}
 .nav-links a:hover{color:var(--ink)}
 .nav .btn{padding:.55em 1.1em;font-size:.92rem}
 .practice-btn{background:var(--rose-soft);color:var(--rose);border:0;border-radius:999px;padding:.5em 1em;font-weight:600;font-size:.88rem;cursor:pointer}
-@media (max-width:820px){.nav-links{display:none}.nav .btn-primary{margin-left:auto}}
+.menu-btn{display:none;width:44px;height:44px;border:0;background:transparent;border-radius:12px;cursor:pointer;place-items:center;color:var(--ink)}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:20px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:transform .3s,opacity .2s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+.menu-btn[aria-expanded="true"] span{background:transparent}
+.menu-btn[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:820px){
+  .nav .wrap{gap:10px}
+  .brand{white-space:nowrap;font-size:1.2rem;padding-block:8px}
+  .nav .btn-primary{margin-left:auto}
+  .menu-btn{display:grid}
+  .nav-links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0;padding:6px 16px 14px;background:var(--ground);border-bottom:1px solid var(--line);box-shadow:0 20px 30px -24px rgba(0,0,0,.35)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:14px 4px;font-size:1.05rem;border-bottom:1px solid var(--line);color:var(--ink)}
+  .nav-links a:last-child{border-bottom:0}
+}
 
 /* hero */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -125,7 +141,9 @@ section.band{padding-block:clamp(64px,9vw,110px)}
 /* paths */
 .paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .path{background:var(--surface);border-radius:var(--r);padding:30px;display:grid;gap:16px;align-content:start;border:1px solid var(--line)}
-.path header{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.path{min-width:0}
+.path header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 12px;align-items:start}
+.therapy>*{min-width:0}
 .pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:.35em .8em;border-radius:999px;white-space:nowrap}
 .pill.open{background:var(--sage-soft);color:var(--sage)}
 .pill.soon{background:var(--amber-soft);color:var(--amber)}
@@ -265,6 +283,14 @@ td .sub{color:var(--ink-3);font-size:.8rem;display:block}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 60px));visibility:hidden;background:var(--ink);color:var(--ground);padding:.8em 1.2em;border-radius:999px;font-size:.92rem;transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:50;max-width:calc(100% - 32px)}
 .toast.show{transform:translate(-50%,0);visibility:visible}
 #liftoff{position:fixed;inset:0;pointer-events:none;z-index:60;width:100%;height:100%}
+@media (max-width:560px){
+  .step,.path{padding:18px}
+  .summary{padding:22px}
+  .choice{padding:.7em .9em;min-height:44px}
+  footer a{display:inline-block;padding:10px 0}
+  .hero-ctas .btn{flex:1 1 auto;justify-content:center}
+  section.band{padding-block:56px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 
@@ -293,14 +319,16 @@ td .sub{color:var(--ink-3);font-size:.8rem;display:block}
       <svg viewBox="0 0 120 96" aria-hidden="true"><use href="#bfly"/></svg>
       Monarch Healing
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#welcome">About</a>
       <a href="#therapies">Therapies</a>
       <a href="#pricing">Pricing</a>
       <a href="#team">Practitioners</a>
       <a href="#locations">Locations</a>
+      <a href="#faq">Questions</a>
     </div>
         <a class="btn btn-primary" href="#book">Book</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
   </div>
 </nav>
 
@@ -621,6 +649,11 @@ function renderMine(){
 function statusPill(s){const m={requested:["req","Requested"],confirmed:["open","Confirmed"],waitlist:["soon","Waitlist"],cancelled:["no","Cancelled"]}[s]||["no",s];return `<span class="pill ${m[0]}">${m[1]}</span>`}
 
 renderPaths();renderTeam();renderLocs();renderBooking();
+
+/* ---------- mobile menu ---------- */
+(function(){const b=$("#menuBtn"),m=$("#navLinks");const set=o=>{m.classList.toggle("open",o);b.setAttribute("aria-expanded",o)};
+b.addEventListener("click",()=>set(!m.classList.contains("open")));m.addEventListener("click",e=>{if(e.target.closest("a"))set(false)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")set(false)});})();
 
 /* ---------- butterfly sky ---------- */
 (function(){

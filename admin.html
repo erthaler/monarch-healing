@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Practice · Monarch Healing</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAF4F6">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="bfly" viewBox="0 0 120 96"><g stroke="var(--vein)" stroke-width="2.4" stroke-linejoin="round"><path d="M58 44 C40 8 8 2 6 22 C4 38 24 48 58 50Z" fill="var(--monarch)"/><path d="M58 52 C34 54 16 70 26 84 C36 96 52 80 58 58Z" fill="var(--monarch)"/><path d="M62 44 C80 8 112 2 114 22 C116 38 96 48 62 50Z" fill="var(--monarch)"/><path d="M62 52 C86 54 104 70 94 84 C84 96 68 80 62 58Z" fill="var(--monarch)"/></g><ellipse cx="60" cy="52" rx="3.2" ry="20" fill="var(--vein)"/></symbol></defs></svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Monarch Healing home"><svg viewBox="0 0 120 96" aria-hidden="true"><use href="#bfly"/></svg>Monarch Healing</a>
+    <span class="pill req hide-sm" style="margin-left:6px">Practice</span>
+    <a class="nav-acct" href="account.html" aria-label="My sessions"><svg class="acct-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="lbl">My sessions</span></a>
+    <button class="btn btn-ghost" id="refreshBtn" type="button" style="padding:.5em 1em">Refresh</button>
+  </div>
+</nav>
+
+<main class="wrap page">
+  <section class="gate" id="gate">
+    <svg viewBox="0 0 120 96" width="64" aria-hidden="true"><use href="#bfly"/></svg>
+    <h1 style="font-size:2rem" id="gateTitle">Checking your access…</h1>
+    <p class="lede" id="gateText"></p>
+    <a class="btn btn-primary" id="gateBtn" href="account.html" hidden>Sign in</a>
+  </section>
+
+  <section id="dash" hidden>
+    <div class="page-head">
+      <div><p class="eyebrow">Practice</p><h1>Bookings.</h1></div>
+      <p class="muted" id="updated"></p>
+    </div>
+    <div class="kpis admin">
+      <div class="kpi"><b id="kReq">0</b><span>Waiting for you to confirm</span></div>
+      <div class="kpi"><b id="kWeek">0</b><span>Confirmed, next 7 days</span></div>
+      <div class="kpi"><b id="kUp">0</b><span>All upcoming</span></div>
+      <div class="kpi"><b id="kWait">0</b><span>On waitlists</span></div>
+    </div>
+    <div class="filters">
+      <select id="fView" aria-label="Which bookings">
+        <option value="attention">Needs attention</option>
+        <option value="upcoming">Upcoming</option>
+        <option value="waitlist">Waitlists</option>
+        <option value="past">Past</option>
+        <option value="all">Everything</option>
+      </select>
+      <select id="fTher" aria-label="Practitioner"></select>
+      <select id="fLoc" aria-label="Location"></select>
+      <input type="search" id="fSearch" placeholder="Search client name or email" aria-label="Search clients">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>When</th><th>Client</th><th>Session</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin-top:14px;font-size:.85rem">Times in Pacific time. Clients see status changes in their account right away. To add practitioners, locations or change weekly hours, ask Claude (admin pages for those are next).</p>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/vendor/supabase-2.117.2.js"></script>
+<script src="js/site.js"></script>
+<script src="js/app.js"></script>
+<script>
+let all = [], people = {};
+$("#fTher").innerHTML = '<option value="">All practitioners</option>' + PRACTITIONERS.map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join("");
+$("#fLoc").innerHTML = '<option value="">All locations</option>' + LOCATIONS.filter(l => !l.future).map(l => `<option value="${l.id}">${esc(l.name)}</option>`).join("");
+["fView","fTher","fLoc","fSearch"].forEach(id => $("#"+id).addEventListener("input", paint));
+
+function gate(title, text, btn){ $("#gateTitle").textContent = title; $("#gateText").textContent = text || ""; $("#gateBtn").hidden = !btn; $("#gate").hidden = false; $("#dash").hidden = true; }
+
+async function load(){
+  all = await MH.allBookings();
+  const ids = [...new Set(all.map(b => b.client_id))];
+  (await MH.profilesFor(ids)).forEach(p => people[p.id] = p);
+  $("#updated").textContent = "Updated " + new Intl.DateTimeFormat("en-CA", { timeZone: MH_CONFIG.timeZone, hour: "numeric", minute: "2-digit" }).format(new Date());
+  paint();
+}
+
+function paint(){
+  const now = new Date(), week = new Date(Date.now() + 7 * 864e5);
+  const live = b => b.status === "requested" || b.status === "confirmed";
+  const future = b => b.starts_at && new Date(b.starts_at) > now;
+  $("#kReq").textContent = all.filter(b => b.status === "requested" && future(b)).length;
+  $("#kWeek").textContent = all.filter(b => b.status === "confirmed" && future(b) && new Date(b.starts_at) < week).length;
+  $("#kUp").textContent = all.filter(b => live(b) && future(b)).length;
+  $("#kWait").textContent = all.filter(b => b.status === "waitlist").length;
+  const v = $("#fView").value, ft = $("#fTher").value, fl = $("#fLoc").value, q = $("#fSearch").value.trim().toLowerCase();
+  let list = all.filter(b => {
+    if (ft && b.practitioner_id !== ft) return false;
+    if (fl && b.location_id !== fl) return false;
+    if (q) { const p = people[b.client_id] || {}; if (!((p.full_name || "") + " " + (p.email || "")).toLowerCase().includes(q)) return false; }
+    if (v === "attention") return b.status === "requested" && future(b);
+    if (v === "upcoming") return live(b) && future(b);
+    if (v === "waitlist") return b.status === "waitlist";
+    if (v === "past") return b.starts_at && !future(b) && b.status !== "waitlist";
+    return true;
+  });
+  if (v === "past") list = list.reverse();
+  $("#rows").innerHTML = list.length ? list.map(row).join("") :
+    `<tr><td colspan="5" class="empty">${v === "attention" ? "Nothing waiting. New requests appear here." : "No bookings match."}</td></tr>`;
+}
+
+function row(b){
+  const p = people[b.client_id] || {}, t = byId(THERAPIES, b.therapy_id) || { name: b.therapy_id };
+  const l = byId(LOCATIONS, b.location_id) || { name: b.location_id }, pr = byId(PRACTITIONERS, b.practitioner_id) || { name: b.practitioner_id };
+  const when = b.starts_at ? `${esc(MH.parts(b.starts_at).dow)} ${esc(MH.parts(b.starts_at).mon)} ${esc(MH.parts(b.starts_at).day)}<span class="sub">${esc(MH.parts(b.starts_at).time)}</span>` : '<span class="sub">Waitlist</span>';
+  const future = b.starts_at && new Date(b.starts_at) > new Date();
+  const acts = [];
+  if (b.status === "requested") acts.push(`<button class="mini ok" data-s="confirmed" data-id="${b.id}">Confirm</button>`);
+  if (b.status === "requested" || b.status === "confirmed" || b.status === "waitlist") acts.push(`<button class="mini bad" data-s="cancelled" data-id="${b.id}">Cancel</button>`);
+  if (b.status === "confirmed" && !future) acts.push(`<button class="mini" data-s="completed" data-id="${b.id}">Done</button><button class="mini" data-s="no_show" data-id="${b.id}">No-show</button>`);
+  if (b.starts_at && (b.status === "confirmed" || b.status === "requested")) acts.push(`<a class="mini" href="#" data-gcal="${b.id}">To my calendar</a>`);
+  return `<tr><td>${when}</td>
+    <td>${esc(p.full_name || "—")}<span class="sub">${esc(p.email || "")}${p.phone ? " · " + esc(p.phone) : ""}</span>${b.first_visit ? '<span class="sub">First visit</span>' : ""}${b.notes ? `<span class="sub">“${esc(b.notes)}”</span>` : ""}</td>
+    <td>${esc(t.name)}<span class="sub">${esc(pr.name)} · ${esc(l.name)}${b.format && b.format !== "Individual" ? " · " + esc(b.format) : ""}</span></td>
+    <td>${statusPill(b.status)}${b.cancelled_by ? `<span class="sub">by ${esc(b.cancelled_by)}</span>` : ""}</td>
+    <td><div class="tbl-actions">${acts.join("")}</div></td></tr>`;
+}
+
+$("#rows").addEventListener("click", async e => {
+  const g = e.target.closest("[data-gcal]");
+  if (g) { e.preventDefault(); const b = all.find(x => x.id === g.dataset.gcal); const p = people[b.client_id] || {};
+    const ev = MH.eventFor(b); ev.title = (byId(THERAPIES, b.therapy_id) || {}).name + " · " + (p.full_name || p.email || "client");
+    ev.details = [p.full_name, p.email, p.phone, b.notes ? "Notes: " + b.notes : ""].filter(Boolean).join("\n");
+    window.open(MH.googleUrl(ev), "_blank", "noopener"); return; }
+  const btn = e.target.closest("[data-s]"); if (!btn) return;
+  btn.disabled = true;
+  try { await MH.setStatus(btn.dataset.id, btn.dataset.s); toast({ confirmed: "Confirmed", cancelled: "Cancelled, time reopened", completed: "Marked done", no_show: "Marked as no-show" }[btn.dataset.s]); await load(); }
+  catch (err) { toast(MH.explain(err)); btn.disabled = false; }
+});
+$("#refreshBtn").addEventListener("click", () => load().catch(err => toast(MH.explain(err))));
+
+(async () => {
+  if (!MH.connected) return gate("Not connected yet.", "The booking database hasn't been connected to the site.");
+  const u = await MH.user();
+  if (!u) return gate("Please sign in.", "Sign in with the email the practice uses, then come back to this page.", true);
+  if (!(await MH.isAdmin())) return gate("This page is for the practice.", "You're signed in as " + u.email + ", which doesn't have practice access.");
+  $("#gate").hidden = true; $("#dash").hidden = false;
+  try { await load(); } catch (err) { toast(MH.explain(err)); }
+  setInterval(() => { if (!document.hidden) load().catch(() => {}); }, 60000);
+})();
+</script>
+</body>
+</html>

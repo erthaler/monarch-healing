@@ -1,0 +1,14 @@
+<!-- Supabase → Authentication → Email Templates → "Magic Link" (and paste the same into "Confirm signup").
+     Subject: Your Monarch Healing sign-in code: {{ .Token }} -->
+<div style="margin:0;background:#FAF4F6;font-family:Helvetica,Arial,sans-serif;color:#2B1A2C">
+  <div style="max-width:520px;margin:0 auto;padding:32px 20px">
+    <p style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#D9661A;margin:0 0 8px">Monarch Healing</p>
+    <h1 style="font-family:Georgia,serif;font-weight:400;font-size:28px;margin:0 0 18px">Your sign-in code</h1>
+    <div style="background:#fff;border:1px solid #E6D6DF;border-radius:14px;padding:22px;font-size:15px;line-height:1.6">
+      <p style="margin:0 0 12px">Enter this code on the Monarch Healing site:</p>
+      <p style="font-family:Menlo,Consolas,monospace;font-size:32px;letter-spacing:.3em;margin:0 0 16px;color:#2B1A2C"><b>{{ .Token }}</b></p>
+      <p style="margin:0">Or <a href="{{ .ConfirmationURL }}" style="color:#C9486E">tap here to sign in</a> on this device.</p>
+    </div>
+    <p style="font-size:13px;color:#8C7A8B;margin-top:18px">The code expires in one hour. If you didn't ask for it, you can ignore this email.</p>
+  </div>
+</div>

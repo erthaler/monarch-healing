@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>My sessions · Monarch Healing</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAF4F6">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="bfly" viewBox="0 0 120 96"><g stroke="var(--vein)" stroke-width="2.4" stroke-linejoin="round"><path d="M58 44 C40 8 8 2 6 22 C4 38 24 48 58 50Z" fill="var(--monarch)"/><path d="M58 52 C34 54 16 70 26 84 C36 96 52 80 58 58Z" fill="var(--monarch)"/><path d="M62 44 C80 8 112 2 114 22 C116 38 96 48 62 50Z" fill="var(--monarch)"/><path d="M62 52 C86 54 104 70 94 84 C84 96 68 80 62 58Z" fill="var(--monarch)"/></g><ellipse cx="60" cy="52" rx="3.2" ry="20" fill="var(--vein)"/></symbol></defs></svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Monarch Healing home"><svg viewBox="0 0 120 96" aria-hidden="true"><use href="#bfly"/></svg>Monarch Healing</a>
+    <div class="nav-links" id="navLinks">
+      <a href="./#therapies">Therapies</a>
+      <a href="./#pricing">Pricing</a>
+      <a href="./#faq">Questions</a>
+    </div>
+    <a class="nav-acct" id="acctLink" href="account.html" aria-label="My sessions" hidden><svg class="acct-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="lbl">My sessions</span></a>
+    <a class="btn btn-primary" href="./#book">Book</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+  </div>
+</nav>
+
+<main class="wrap page">
+  <!-- not connected yet -->
+  <section class="gate" id="offline" hidden>
+    <svg viewBox="0 0 120 96" width="72" aria-hidden="true"><use href="#bfly"/></svg>
+    <h1 style="font-size:2.2rem">Client accounts are coming soon.</h1>
+    <p class="lede">For now, book on the main page and Monika will confirm by email.</p>
+    <a class="btn btn-primary" href="./#book">Book a session</a>
+  </section>
+
+  <!-- signed out -->
+  <section class="signin panel" id="signedOut" hidden>
+    <p class="eyebrow">My sessions</p>
+    <h1>Sign in with your email.</h1>
+    <p class="muted" style="font-size:1rem">No password needed. We'll email you a 6-digit code. If you're new, this also creates your free account.</p>
+    <form class="form" id="signinForm" novalidate>
+      <label>Email<input id="siEmail" type="email" autocomplete="email" required></label>
+      <button class="btn btn-primary" id="siSend" type="submit" style="justify-content:center">Email me a code</button>
+    </form>
+    <div class="code-box" id="siCodeBox" hidden>
+      <p>Enter the code we sent to <b id="siTo"></b>. You can also tap the link in that email.</p>
+      <div class="code-row"><input id="siCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" aria-label="6-digit code"><button class="btn btn-primary" id="siVerify" type="button">Sign in</button></div>
+      <p class="muted"><button class="linkish" id="siResend" type="button">Send a new code</button> · <button class="linkish" id="siChange" type="button">Use a different email</button></p>
+    </div>
+    <p class="status-msg" id="siMsg" hidden style="background:var(--ground-2)"></p>
+  </section>
+
+  <!-- signed in -->
+  <section id="signedIn" hidden>
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">My sessions</p>
+        <h1 id="hello">Hello.</h1>
+      </div>
+      <a class="btn btn-primary" href="./#book"><svg class="fly" viewBox="0 0 20 16" aria-hidden="true"><path class="wl" d="M10 8 C7 1 1 1 1 5 C1 9 6 9 10 9Z M10 9 C6 10 3 14 6 15 C8 16 10 12 10 9Z" fill="var(--monarch)"/><path class="wr" d="M10 8 C13 1 19 1 19 5 C19 9 14 9 10 9Z M10 9 C14 10 17 14 14 15 C12 16 10 12 10 9Z" fill="var(--monarch)"/></svg>Book a session</a>
+    </div>
+    <p class="status-msg" id="pageMsg" hidden style="background:var(--monarch-soft);margin-bottom:18px"></p>
+
+    <div class="acct-grid">
+      <div>
+        <div class="list-head"><h2>Upcoming</h2><span class="muted" id="tzLabel">Times in Pacific time</span></div>
+        <div id="upcoming"></div>
+
+        <div id="waitWrap" hidden style="margin-top:34px">
+          <div class="list-head"><h2>Waitlists</h2></div>
+          <div id="waitlist"></div>
+        </div>
+
+        <details class="past" id="pastWrap" hidden style="margin-top:34px">
+          <summary>Past and cancelled sessions</summary>
+          <div id="past" style="margin-top:10px"></div>
+        </details>
+      </div>
+
+      <aside class="side">
+        <div class="panel">
+          <h3 style="font-size:1.4rem;margin-bottom:12px">Your details</h3>
+          <form class="form" id="profileForm" novalidate>
+            <label>Full name<input id="pfName" autocomplete="name"></label>
+            <label>Phone<input id="pfPhone" type="tel" autocomplete="tel"></label>
+            <label>Email<input id="pfEmail" type="email" disabled></label>
+            <button class="btn btn-ghost" type="submit" style="justify-self:start">Save details</button>
+          </form>
+        </div>
+        <div class="panel">
+          <h3 style="font-size:1.4rem;margin-bottom:10px">Good to know</h3>
+          <ul class="muted-list">
+            <li>Monika confirms each request, usually within a day. You'll see the status change here.</li>
+            <li>You can move or cancel a confirmed session online up to 24 hours before it starts. After that, please email <b>contactmonarchhealing@gmail.com</b>.</li>
+            <li>Moving a session sends it back to Monika to confirm the new time.</li>
+            <li>The studio address shows on confirmed in-person sessions and in your calendar.</li>
+          </ul>
+        </div>
+        <button class="linkish" id="signOutBtn" type="button" style="justify-self:start">Sign out</button>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Monarch Healing · Counselling · Coaching · Bodywork</span>
+    <span style="display:flex;gap:20px;flex-wrap:wrap"><a href="mailto:contactmonarchhealing@gmail.com">contactmonarchhealing@gmail.com</a><a href="https://www.instagram.com/monarchhealing_/" target="_blank" rel="noopener">Instagram @monarchhealing_</a></span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/vendor/supabase-2.117.2.js"></script>
+<script src="js/site.js"></script>
+<script src="js/app.js"></script>
+<script>
+let rows = [], openPanel = null, siEmail = null;
+
+function show(which){ ["offline","signedOut","signedIn"].forEach(id => $("#"+id).hidden = id !== which); }
+function msg(el, html){ el.innerHTML = html; el.hidden = !html; }
+
+/* ---------- sign in ---------- */
+$("#signinForm").addEventListener("submit", async e => {
+  e.preventDefault(); const email = $("#siEmail").value.trim();
+  if (!/^\S+@\S+\.\S+$/.test(email)) return msg($("#siMsg"), "Enter a valid email address.");
+  $("#siSend").disabled = true;
+  try { await MH.sendCode(email); siEmail = email; $("#siTo").textContent = email; $("#siCodeBox").hidden = false; $("#signinForm").hidden = true; msg($("#siMsg"), ""); setTimeout(() => $("#siCode").focus(), 50); }
+  catch (err) { msg($("#siMsg"), esc(MH.explain(err))); }
+  $("#siSend").disabled = false;
+});
+async function verify(){
+  const code = $("#siCode").value.replace(/\D/g, ""); if (code.length < 6) return msg($("#siMsg"), "Enter the 6-digit code from the email.");
+  $("#siVerify").disabled = true;
+  try { await MH.verifyCode(siEmail, code); await boot(); }
+  catch (err) { msg($("#siMsg"), esc(MH.explain(err))); }
+  $("#siVerify").disabled = false;
+}
+$("#siVerify").addEventListener("click", verify);
+$("#siCode").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); verify(); } });
+$("#siResend").addEventListener("click", async () => { try { await MH.sendCode(siEmail); toast("New code sent"); } catch (err) { msg($("#siMsg"), esc(MH.explain(err))); } });
+$("#siChange").addEventListener("click", () => { $("#siCodeBox").hidden = true; $("#signinForm").hidden = false; $("#siEmail").focus(); });
+$("#signOutBtn").addEventListener("click", async () => { await MH.signOut(); location.href = "./"; });
+
+/* ---------- profile ---------- */
+$("#profileForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  try { await MH.saveProfile({ full_name: $("#pfName").value.trim().slice(0,120) || null, phone: $("#pfPhone").value.trim().slice(0,40) || null }); toast("Details saved"); paintHello(); }
+  catch (err) { toast(MH.explain(err)); }
+});
+function paintHello(){ const n = $("#pfName").value.trim().split(" ")[0]; $("#hello").textContent = n ? "Hello, " + n + "." : "Hello."; }
+
+/* ---------- sessions ---------- */
+const therapy = id => byId(THERAPIES, id) || { name: id };
+const place = id => byId(LOCATIONS, id) || { name: id };
+const person = id => byId(PRACTITIONERS, id) || { name: id };
+
+function card(b){
+  const t = therapy(b.therapy_id), l = place(b.location_id), p = person(b.practitioner_id);
+  const active = b.status === "requested" || b.status === "confirmed";
+  const upcoming = b.starts_at && new Date(b.starts_at) > new Date();
+  const locked = b.status === "confirmed" && MH.hoursUntil(b.starts_at) < MH_CONFIG.cancelHours;
+  const d = b.starts_at ? MH.parts(b.starts_at) : null;
+  const date = d ? `<div class="datebox">${d.dow}<b>${d.day}</b>${d.mon}</div>` : `<div class="datebox">List<b>♡</b>RMT</div>`;
+  const meta = [d ? d.time : null, p.name, l.name, b.format && b.format !== "Individual" ? b.format : null].filter(Boolean).map(esc).join(" · ");
+  let actions = "";
+  if (active && upcoming) {
+    actions = `<div class="actions">${MH.calendarMenu(b.id)}
+      <button class="mini-btn" data-act="move" data-id="${b.id}" ${locked ? "disabled" : ""}>Change time</button>
+      <button class="mini-btn danger" data-act="cancel" data-id="${b.id}" ${locked ? "disabled" : ""}>Cancel</button></div>
+      ${locked ? `<p class="note">Starts within 24 hours. To change it, email ${esc(MONIKA_EMAIL)}.</p>` : ""}
+      ${b.status === "requested" ? `<p class="note">Waiting for Monika to confirm this time.</p>` : ""}`;
+  } else if (b.status === "waitlist") {
+    actions = `<div class="actions"><button class="mini-btn danger" data-act="cancel" data-id="${b.id}">Leave waitlist</button></div>`;
+  }
+  const addr = b.status === "confirmed" && b.location_id !== "distance" && upcoming ? `<p class="note addr" data-addr="${b.id}"></p>` : "";
+  const inline = openPanel && openPanel.id === b.id ? `<div class="inline" id="inline">${openPanel.html}</div>` : "";
+  return `<article class="sess ${b.status}">${date}<div><h3>${esc(t.name)} ${statusPill(b.status)}</h3><p class="meta">${meta}</p>${addr}${actions}</div>${inline}</article>`;
+}
+
+function paint(){
+  const now = new Date();
+  const up = rows.filter(b => b.starts_at && new Date(b.starts_at) > now && (b.status === "requested" || b.status === "confirmed"));
+  const wait = rows.filter(b => b.status === "waitlist");
+  const past = rows.filter(b => !up.includes(b) && !wait.includes(b)).sort((a, b) => new Date(b.starts_at || b.created_at) - new Date(a.starts_at || a.created_at));
+  $("#upcoming").innerHTML = up.length ? up.map(card).join("") :
+    `<div class="empty-state"><svg viewBox="0 0 120 96" width="54" aria-hidden="true"><use href="#bfly"/></svg><p>No upcoming sessions yet.</p><a class="btn btn-primary" href="./#book">Book a session</a></div>`;
+  $("#waitWrap").hidden = !wait.length; $("#waitlist").innerHTML = wait.map(card).join("");
+  $("#pastWrap").hidden = !past.length; $("#past").innerHTML = past.map(card).join("");
+  document.querySelectorAll("[data-addr]").forEach(async el => { try { const a = await MH.address(el.dataset.addr); el.textContent = a ? "Address: " + a : ""; } catch {} });
+}
+async function load(){ rows = await MH.myBookings(); paint(); }
+
+MH.bindCalendar(document.querySelector("main"), id => rows.find(r => r.id === id));
+
+document.addEventListener("click", async e => {
+  const btn = e.target.closest("[data-act]"); if (!btn) return;
+  const id = btn.dataset.id, b = rows.find(r => r.id === id);
+  if (btn.dataset.act === "cancel") {
+    openPanel = { id, html: `<p><b>${b.status === "waitlist" ? "Leave this waitlist?" : "Cancel this session?"}</b> ${b.status === "confirmed" ? "Monika will be notified and the time will open up for someone else." : ""}</p>
+      <div class="actions"><button class="mini-btn go" data-act="cancel-yes" data-id="${id}">Yes, cancel</button><button class="mini-btn" data-act="close" data-id="${id}">Keep it</button></div>` };
+    paint();
+  } else if (btn.dataset.act === "cancel-yes") {
+    btn.disabled = true;
+    try { await MH.cancel(id); openPanel = null; toast("Cancelled"); await load(); } catch (err) { openPanel = null; paint(); msg($("#pageMsg"), esc(MH.explain(err))); }
+  } else if (btn.dataset.act === "close") { openPanel = null; paint(); }
+  else if (btn.dataset.act === "move") {
+    openPanel = { id, html: `<p class="muted">Finding open times…</p>` }; paint();
+    try {
+      const slots = await MH.slots(b.practitioner_id, b.therapy_id, null, 28);
+      const byDay = {}; slots.forEach(s => (byDay[s.slot_date] = byDay[s.slot_date] || []).push(String(s.slot_time).slice(0,5)));
+      const days = Object.keys(byDay).slice(0, 14);
+      openPanel = { id, days: byDay, day: days[0] || null, time: null };
+      openPanel.html = moveHtml(); paint();
+    } catch (err) { openPanel = null; paint(); msg($("#pageMsg"), esc(MH.explain(err))); }
+  } else if (btn.dataset.act === "move-day") { openPanel.day = btn.dataset.day; openPanel.time = null; openPanel.html = moveHtml(); paint(); }
+  else if (btn.dataset.act === "move-time") { openPanel.time = btn.dataset.time; openPanel.html = moveHtml(); paint(); }
+  else if (btn.dataset.act === "move-yes") {
+    btn.disabled = true;
+    try { await MH.reschedule(id, openPanel.day, openPanel.time); openPanel = null; toast("New time requested"); await load(); }
+    catch (err) { msg($("#pageMsg"), esc(MH.explain(err))); btn.disabled = false; }
+  }
+});
+function moveHtml(){
+  const p = openPanel, days = Object.keys(p.days).slice(0, 14);
+  if (!days.length) return `<p>No other open times in the next four weeks. Email ${esc(MONIKA_EMAIL)} and Monika will find one for you.</p><div class="actions"><button class="mini-btn" data-act="close" data-id="${p.id}">Close</button></div>`;
+  const dayBtns = days.map(k => { const [y,m,d] = k.split("-").map(Number); const dt = new Date(y, m-1, d);
+    return `<button type="button" class="choice day" data-act="move-day" data-id="${p.id}" data-day="${k}" aria-pressed="${p.day === k}"><small>${DOW[dt.getDay()]}</small><b>${d}</b><small>${MON[m-1]}</small></button>`; }).join("");
+  const times = (p.days[p.day] || []).map(t => `<button type="button" class="choice" data-act="move-time" data-id="${p.id}" data-time="${t}" aria-pressed="${p.time === t}"><span>${fmtTime(t)}</span></button>`).join("");
+  return `<p><b>Pick a new time</b> <span class="muted">(Pacific time)</span></p><div class="days">${dayBtns}</div><div class="choices">${times}</div>
+    <div class="actions"><button class="mini-btn go" data-act="move-yes" data-id="${p.id}" ${p.time ? "" : "disabled"}>Request ${p.time ? fmtDate(p.day) + " · " + fmtTime(p.time) : "new time"}</button><button class="mini-btn" data-act="close" data-id="${p.id}">Keep current time</button></div>`;
+}
+
+/* ---------- start ---------- */
+async function boot(){
+  if (!MH.connected) return show("offline");
+  const u = await MH.user();
+  if (!u) return show("signedOut");
+  show("signedIn");
+  try {
+    const p = await MH.profile();
+    $("#pfName").value = (p && p.full_name) || ""; $("#pfPhone").value = (p && p.phone) || ""; $("#pfEmail").value = u.email || ""; paintHello();
+    const pend = MH.takePending();
+    if (pend) {
+      if (p && !p.full_name && pend.name) { await MH.saveProfile({ full_name: pend.name, phone: pend.phone || null }); $("#pfName").value = pend.name; paintHello(); }
+      try { await MH.request(pend); msg($("#pageMsg"), "<b>Your booking request is in.</b> Monika will confirm it by email, usually within a day."); }
+      catch (err) { msg($("#pageMsg"), esc(MH.explain(err)) + ' <a href="./#book">Choose another time</a>'); }
+    }
+    await load();
+  } catch (err) { msg($("#pageMsg"), esc(MH.explain(err))); }
+  MH.paintNav();
+}
+boot();
+if (MH.connected) MH.onAuth(u => { if (!u) show("signedOut"); });
+</script>
+</body>
+</html>

@@ -156,7 +156,7 @@ $("#profileForm").addEventListener("submit", async e => {
 function paintHello(){ const n = $("#pfName").value.trim().split(" ")[0]; $("#hello").textContent = n ? "Hello, " + n + "." : "Hello."; }
 
 /* ---------- sessions ---------- */
-const therapy = id => byId(THERAPIES, id) || { name: id };
+const therapy = id => byId(ALL_THERAPIES, id) || { name: id };
 const place = id => byId(LOCATIONS, id) || { name: id };
 const person = id => byId(PRACTITIONERS, id) || { name: id };
 

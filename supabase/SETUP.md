@@ -16,3 +16,9 @@ The site works without this (bookings fall back to an email request). Once these
 - Clients can move or cancel a *confirmed* session online until 24 hours before; unconfirmed requests any time.
 - Max 5 unconfirmed requests per client.
 - Weekly hours live in the `availability` table (weekday 0 = Sunday).
+
+## Opening massage therapy (after Monika's CCHPBC registration is active)
+1. SQL Editor: `update public.therapies set bookable = true where id in ('rmt30','rmt60','rmt90','stone');`
+2. `js/site.js`: set `rmtOpen: true`, and set the `price` of each entry in `RMT_THERAPIES`.
+3. Push. The massage therapy page then shows its booking steps; the main site is unchanged.
+Keep packages, energy-work wording and receipts separate from massage therapy.

@@ -8,21 +8,31 @@ const MH_CONFIG = {
   supabaseKey: "",
   timeZone: "America/Vancouver",
   siteUrl: "https://monarch-healing.com",
-  cancelHours: 24
+  cancelHours: 24,
+  /* Massage therapy page: keep false until Monika's registration with CCHPBC is active.
+     Turning it on also needs the RMT therapies set to bookable in Supabase (see supabase/seed.sql). */
+  rmtOpen: false
 };
 
 /* ---------- practice data: therapies, practitioners, locations ---------- */
 const MONIKA_EMAIL = "contactmonarchhealing@gmail.com";
+/* Intuitive and energy work: booked on the main page */
 const THERAPIES = [
-  {id:"call",name:"Free check-in call",path:"energy",mins:20,price:"Free",modes:["distance"],desc:"A short phone call to talk through what you need and choose the right session.",tags:["Phone"]},
-  {id:"qlg",name:"Quantum Life Guidance",path:"energy",mins:75,price:"$150–250",modes:["nv","distance"],desc:"Intuitive guidance to clear old patterns, beliefs and pain, in person or at a distance. Can be combined with any bodywork.",tags:["In person","Distance","Couples","Groups"]},
-  {id:"acu",name:"Jin Shin Do® acupressure",path:"energy",mins:60,price:"$150–250",modes:["nv"],desc:"A Japanese acupressure method. Gentle, held pressure on points along the meridians restores flow and releases emotional and physical blockages, tailored to what needs attention now.",tags:["In person"]},
-  {id:"reflex",name:"Reflexology",path:"energy",mins:60,price:"$150–250",modes:["nv"],desc:"Precise pressure on the feet, where a map of the whole body and its systems can be reached.",tags:["In person"]},
-  {id:"rmt",name:"Registered Massage Therapy",path:"rmt",mins:60,price:"Rates at launch",modes:["nv"],soon:true,desc:"Clinical massage for pain, tension and recovery, with receipts for extended health plans.",tags:["30 · 60 · 90 min","Insurance receipts"]},
-  {id:"stone",name:"Hot stone massage",path:"rmt",mins:90,price:"Rates at launch",modes:["nv"],soon:true,desc:"Warm basalt stones relax deep muscle, ease tension and leave the whole body calm and energized.",tags:["90 min"]}
+  {id:"call",name:"Free check-in call",path:"guidance",mins:20,price:"Free",modes:["distance"],formats:false,desc:"A short phone call to talk through what you need and choose the right session.",tags:["Phone"]},
+  {id:"qlg",name:"Quantum Life Guidance",path:"guidance",mins:75,price:"$150–250",modes:["nv","distance"],desc:"Intuitive guidance to clear old patterns, beliefs and pain, in person or at a distance. Can be combined with hands-on energy work.",tags:["In person","Distance","Couples","Groups"]},
+  {id:"acu",name:"Jin Shin Do® acupressure",path:"hands",mins:60,price:"$150–250",modes:["nv"],desc:"A Japanese acupressure method. Gentle, held pressure on points along the meridians restores flow and releases emotional and physical blockages, tailored to what needs attention now.",tags:["In person"]},
+  {id:"reflex",name:"Reflexology",path:"hands",mins:60,price:"$150–250",modes:["nv"],desc:"Precise pressure on the feet, where a map of the whole body and its systems can be reached.",tags:["In person"]}
 ];
+/* Registered Massage Therapy: kept separate, on massage-therapy.html, and only bookable once MH_CONFIG.rmtOpen is true */
+const RMT_THERAPIES = [
+  {id:"rmt30",name:"Massage therapy · 30 min",path:"rmt",mins:30,price:"Set at opening",modes:["nv"],formats:false,desc:"A focused treatment for one area.",tags:["In person"]},
+  {id:"rmt60",name:"Massage therapy · 60 min",path:"rmt",mins:60,price:"Set at opening",modes:["nv"],formats:false,desc:"Assessment and treatment for several areas.",tags:["In person"]},
+  {id:"rmt90",name:"Massage therapy · 90 min",path:"rmt",mins:90,price:"Set at opening",modes:["nv"],formats:false,desc:"A longer treatment with time for assessment and home care advice.",tags:["In person"]},
+  {id:"stone",name:"Hot stone massage therapy · 90 min",path:"rmt",mins:90,price:"Set at opening",modes:["nv"],formats:false,desc:"Massage therapy using heated basalt stones.",tags:["In person"]}
+];
+const ALL_THERAPIES = THERAPIES.concat(RMT_THERAPIES);
 const PRACTITIONERS = [
-  {id:"monika",name:"Monika Kulaga",role:"Founder · Lead practitioner",photo:"img/portrait.jpg",therapies:["call","qlg","acu","reflex","rmt","stone"],bio:"Intuitive guide and Quantum Life Guidance practitioner, Jin Shin Do® acupressure practitioner and reflexologist, completing her RMT training in BC."}
+  {id:"monika",name:"Monika Kulaga",role:"Founder · Lead practitioner",photo:"img/portrait.jpg",therapies:["call","qlg","acu","reflex","rmt30","rmt60","rmt90","stone"],bio:"Intuitive guide and Quantum Life Guidance practitioner, Jin Shin Do® acupressure practitioner and reflexologist, currently completing her massage therapy training in BC."}
 ];
 const LOCATIONS = [
   {id:"nv",name:"North Vancouver studio",area:"North Vancouver, BC",desc:"A quiet treatment room for bodywork and in-person guidance. The address is sent with your confirmation."},

@@ -14,10 +14,17 @@ insert into public.therapies (id, name, minutes, bookable, waitlist_only, sort) 
   ('qlg',    'Quantum Life Guidance',      75, true, false, 2),
   ('acu',    'Jin Shin Do® acupressure',   60, true, false, 3),
   ('reflex', 'Reflexology',                60, true, false, 4),
-  ('rmt',    'Registered Massage Therapy', 60, true, true,  5),
-  ('stone',  'Hot stone massage',          90, true, true,  6)
+  -- Registered Massage Therapy: closed (bookable = false) until Monika's CCHPBC registration is active.
+  -- To open: update public.therapies set bookable = true where id in ('rmt30','rmt60','rmt90','stone');
+  --          and set rmtOpen: true in js/site.js
+  ('rmt30',  'Massage therapy · 30 min',            30, false, false, 10),
+  ('rmt60',  'Massage therapy · 60 min',            60, false, false, 11),
+  ('rmt90',  'Massage therapy · 90 min',            90, false, false, 12),
+  ('stone',  'Hot stone massage therapy · 90 min',  90, false, false, 13)
 on conflict (id) do update set name = excluded.name, minutes = excluded.minutes,
-  bookable = excluded.bookable, waitlist_only = excluded.waitlist_only, sort = excluded.sort;
+  waitlist_only = excluded.waitlist_only, sort = excluded.sort;  -- bookable is left as is on re-runs
+
+delete from public.therapies where id = 'rmt' and not exists (select 1 from public.bookings where therapy_id = 'rmt');
 
 insert into public.practitioner_therapies (practitioner_id, therapy_id)
 select 'monika', id from public.therapies
@@ -26,7 +33,8 @@ on conflict do nothing;
 insert into public.therapy_locations (therapy_id, location_id) values
   ('call','distance'),
   ('qlg','nv'), ('qlg','distance'),
-  ('acu','nv'), ('reflex','nv'), ('rmt','nv'), ('stone','nv')
+  ('acu','nv'), ('reflex','nv'),
+  ('rmt30','nv'), ('rmt60','nv'), ('rmt90','nv'), ('stone','nv')
 on conflict do nothing;
 
 -- Weekly hours (Vancouver time). 2 = Tue … 6 = Sat

@@ -89,7 +89,7 @@ const MH = (() => {
   /* ---------- add to calendar ---------- */
   const icsStamp = iso => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   function eventFor(b, addr){
-    const t = byId(THERAPIES, b.therapy_id) || { name: b.therapy_id };
+    const t = byId(ALL_THERAPIES, b.therapy_id) || { name: b.therapy_id };
     const p = byId(PRACTITIONERS, b.practitioner_id) || { name: "Monarch Healing" };
     const l = byId(LOCATIONS, b.location_id) || { name: "" };
     const remote = b.location_id === "distance";

@@ -111,7 +111,7 @@ function paint(){
 }
 
 function row(b){
-  const p = people[b.client_id] || {}, t = byId(THERAPIES, b.therapy_id) || { name: b.therapy_id };
+  const p = people[b.client_id] || {}, t = byId(ALL_THERAPIES, b.therapy_id) || { name: b.therapy_id };
   const l = byId(LOCATIONS, b.location_id) || { name: b.location_id }, pr = byId(PRACTITIONERS, b.practitioner_id) || { name: b.practitioner_id };
   const when = b.starts_at ? `${esc(MH.parts(b.starts_at).dow)} ${esc(MH.parts(b.starts_at).mon)} ${esc(MH.parts(b.starts_at).day)}<span class="sub">${esc(MH.parts(b.starts_at).time)}</span>` : '<span class="sub">Waitlist</span>';
   const future = b.starts_at && new Date(b.starts_at) > new Date();
@@ -130,7 +130,7 @@ function row(b){
 $("#rows").addEventListener("click", async e => {
   const g = e.target.closest("[data-gcal]");
   if (g) { e.preventDefault(); const b = all.find(x => x.id === g.dataset.gcal); const p = people[b.client_id] || {};
-    const ev = MH.eventFor(b); ev.title = (byId(THERAPIES, b.therapy_id) || {}).name + " · " + (p.full_name || p.email || "client");
+    const ev = MH.eventFor(b); ev.title = (byId(ALL_THERAPIES, b.therapy_id) || {}).name + " · " + (p.full_name || p.email || "client");
     ev.details = [p.full_name, p.email, p.phone, b.notes ? "Notes: " + b.notes : ""].filter(Boolean).join("\n");
     window.open(MH.googleUrl(ev), "_blank", "noopener"); return; }
   const btn = e.target.closest("[data-s]"); if (!btn) return;
